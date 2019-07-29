@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="testBean"
-          class="ru.kotDementyev.springcourse.TestBean">
-        <constructor-arg value="Valera"/>
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="classicalMusicBean"
+          class="ru.kotDementyev.springcourse.ClassicalMusic">
     </bean>
+
+    <bean id="jazzMusicBean"
+          class="ru.kotDementyev.springcourse.JazzMusic">
+    </bean>
+
+    <bean id="rockMusicBean"
+          class="ru.kotDementyev.springcourse.RockMusic">
+    </bean>
+
+    <!--<bean id="musicPlayer"-->
+    <!--class="ru.kotDementyev.springcourse.MusicPlayer">-->
+    <!--<constructor-arg ref="musicBean"/>-->
+    <!--</bean>-->
+
+    <bean id="musicPlayer"
+          class="ru.kotDementyev.springcourse.MusicPlayer">
+        <property name="musicList">
+            <util:list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="jazzMusicBean"/>
+                <ref bean="rockMusicBean"/>
+            </util:list>
+        </property>
+
+
+        <!--<property name="name" value="Some name"/>-->
+        <!--<property name="volume" value="50"/> -->
+
+        <property name="name" value="${musicPlyer.name}"/>
+        <property name="volume" value="${musicPlyer.volume}"/>
+
+
+    </bean>
+
 
 </beans>
