@@ -10,42 +10,55 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="classicalMusicBean"
-          class="ru.kotDementyev.springcourse.ClassicalMusic">
+    <bean id="classicalMusicBean1"
+          class="ru.kotDementyev.springcourse.ClassicalMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
     </bean>
 
-    <bean id="jazzMusicBean"
-          class="ru.kotDementyev.springcourse.JazzMusic">
-    </bean>
-
-    <bean id="rockMusicBean"
-          class="ru.kotDementyev.springcourse.RockMusic">
-    </bean>
-
-    <!--<bean id="musicPlayer"-->
-    <!--class="ru.kotDementyev.springcourse.MusicPlayer">-->
-    <!--<constructor-arg ref="musicBean"/>-->
+    <!--<bean id="classicalMusicBean2"-->
+    <!--class="ru.kotDementyev.springcourse.ClassicalMusic"-->
+    <!--init-method="doMyInit"-->
+    <!--destroy-method="doMyDestroy">-->
     <!--</bean>-->
 
-    <bean id="musicPlayer"
-          class="ru.kotDementyev.springcourse.MusicPlayer">
-        <property name="musicList">
-            <util:list>
-                <ref bean="classicalMusicBean"/>
-                <ref bean="jazzMusicBean"/>
-                <ref bean="rockMusicBean"/>
-            </util:list>
-        </property>
+    <!--<bean id="classicalMusicBean3"-->
+    <!--class="ru.kotDementyev.springcourse.ClassicalMusic"-->
+    <!--init-method="doMyInit"-->
+    <!--destroy-method="doMyDestroy">-->
+    <!--</bean>-->
 
+    <!--<bean id="jazzMusicBean"-->
+    <!--class="ru.kotDementyev.springcourse.JazzMusic">-->
+    <!--</bean>-->
 
-        <!--<property name="name" value="Some name"/>-->
-        <!--<property name="volume" value="50"/> -->
+    <!--<bean id="rockMusicBean"-->
+    <!--class="ru.kotDementyev.springcourse.RockMusic">-->
+    <!--</bean>-->
 
-        <property name="name" value="${musicPlyer.name}"/>
-        <property name="volume" value="${musicPlyer.volume}"/>
+    <!--&lt;!&ndash;<bean id="musicPlayer"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="ru.kotDementyev.springcourse.MusicPlayer">&ndash;&gt;-->
+    <!--&lt;!&ndash;<constructor-arg ref="musicBean"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
 
+    <!--<bean id="musicPlayer"-->
+    <!--class="ru.kotDementyev.springcourse.MusicPlayer"-->
+    <!--scope="prototype">-->
+    <!--<property name="musicList">-->
+    <!--<util:list>-->
+    <!--<ref bean="classicalMusicBean"/>-->
+    <!--<ref bean="jazzMusicBean"/>-->
+    <!--<ref bean="rockMusicBean"/>-->
+    <!--</util:list>-->
+    <!--</property>-->
 
-    </bean>
+    <!--&lt;!&ndash;<property name="name" value="Some name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<property name="volume" value="50"/> &ndash;&gt;-->
 
+    <!--<property name="name" value="${musicPlyer.name}"/>-->
+    <!--<property name="volume" value="${musicPlyer.volume}"/>-->
 
+    <!--</bean>-->
 </beans>
